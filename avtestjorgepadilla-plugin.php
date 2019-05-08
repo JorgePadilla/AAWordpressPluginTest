@@ -23,11 +23,27 @@ function exchangeHNtoUSDPOC(){
     
  
    $sales = WC()->cart->cart_contents_total;
-   return $sales;
+   return $sales/25;
 
+}
+
+function exchangeHNtoBTC(){
+    
+ 
+   $sales = WC()->cart->cart_contents_total;
+   $request = wp_remote_get('https://api.coindesk.com/v1/bpi/currentprice/HNL.json');
+
+$data = wp_remote_retrieve_body( $request );
+ //$data = str_replace('//','',$data);
+ //$data = json_decode($data);
+
+$pos = strrpos($data, "HNL");
+$rest = substr($data, $pos+13, 12);
+ 
+ return $rest;
 }
 
 
 add_shortcode("total", "get_total_in_cart");
 add_shortcode("exchangeUSD", "exchangeHNtoUSDPOC");
-?>
+add_shortcode("exchangeBTC", "exchangeHNtoBTC");
