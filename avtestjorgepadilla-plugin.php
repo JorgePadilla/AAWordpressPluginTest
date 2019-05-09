@@ -38,10 +38,10 @@ $data = wp_remote_retrieve_body( $request );
  //$data = json_decode($data);
 
 $pos = strrpos($data, "USD");
-$rest = substr($data, $pos+13, 12);
+$rest = substr($data, $pos+13, 7);
  
- $sol=($sales/24.44);
-return $sol/$pos;
+ $ans= $sales/$rest;
+return $ans;
 }
 
 
