@@ -40,7 +40,8 @@ $data = wp_remote_retrieve_body( $request );
 $pos = strrpos($data, "USD");
 $rest = substr($data, $pos+13, 7);
  
- $ans= $sales/$rest;
+ $sales=exchangeHNtoUSDPOC();
+ $ans = ($sales/$rest)/1000; 
 return $ans;
 }
 
