@@ -37,13 +37,15 @@ $data = wp_remote_retrieve_body( $request );
  //$data = str_replace('//','',$data);
  //$data = json_decode($data);
 
-$pos = strrpos($data, "HNL");
+$pos = strrpos($data, "USD");
 $rest = substr($data, $pos+13, 12);
  
- return $rest;
+ $sol=($sales/24.44);
+return $sol/$pos;
 }
 
 
 add_shortcode("total", "get_total_in_cart");
 add_shortcode("exchangeUSD", "exchangeHNtoUSDPOC");
 add_shortcode("exchangeBTC", "exchangeHNtoBTC");
+?>
